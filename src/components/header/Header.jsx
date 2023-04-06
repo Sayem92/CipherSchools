@@ -1,7 +1,6 @@
 import React from "react";
 import bg from "../../assets/headerbg.jpg";
-// import edit from "../../assets/pen-edit.svg";
-// import edit from "../../assets/pen-svgrepo-com.svg";
+import edit from "../../assets/pen-edit.svg";
 
 const Header = () => {
   return (
@@ -16,7 +15,8 @@ const Header = () => {
             src="https://lh3.googleusercontent.com/a/AGNmyxZyymN0L8UiTBNn3PPLDMKktDDem3EKKS2CNYNH3w=s96-c"
             alt=""
           />
-          {/* <img src={edit} alt="" /> */}
+          <img className="-mt-4 ml-12" src={edit} alt="" />
+         
         </div>
         <div className="text-white">
           <h1 className="text-xl">Hello,</h1>
