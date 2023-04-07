@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
-    const [selected, setSelected] = useState(0);
+const SideBar = ({selected, setSelected}) => {
+   
   const handleSelect = (index) => {
     setSelected(index);
   };

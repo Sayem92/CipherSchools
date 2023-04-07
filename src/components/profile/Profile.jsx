@@ -8,10 +8,10 @@ import ChipherMap from "./chipherMap/ChipherMap";
 import ProInfor from "./proInfor/ProInfor";
 import Password from "./password/Password";
 import Interests from "./interests/Interests";
-// import ProInfor from "./ProInfor";
 
 const Profile = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [selected, setSelected] = useState(0);
 
   const handleToggle = () => {
     setIsCollapsed((prev) => !prev);
@@ -21,12 +21,25 @@ const Profile = () => {
     <div className="flex  h-full">
       <div className="flex-1  bg-gray-200">
         {/* all profile section here */}
-        <AboutMe></AboutMe>
-        <ChipherMap></ChipherMap>
-        <TheWeb></TheWeb>
-        <ProInfor></ProInfor>
-        <Password></Password>
-        <Interests></Interests>
+        {selected === 1 && (
+          <div style={{ overflowY: "auto", maxHeight: "100vh" }}>
+            <AboutMe></AboutMe>
+            <ChipherMap></ChipherMap>
+            <TheWeb></TheWeb>
+            <ProInfor></ProInfor>
+            <Password></Password>
+            <Interests></Interests>
+            <style>
+              {`
+          ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            background-color: transparent;
+          }
+        `}
+            </style>
+          </div>
+        )}
         <button
           onClick={handleToggle}
           className={`bg-gray-100 text-black p-2 rounded-l-md absolute ${
@@ -46,7 +59,7 @@ const Profile = () => {
         } right-0`}
       >
         {/* side bar  */}
-        <SideBar></SideBar>
+        <SideBar selected={selected} setSelected={setSelected}></SideBar>
       </div>
     </div>
   );

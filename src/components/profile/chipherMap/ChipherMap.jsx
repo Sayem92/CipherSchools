@@ -70,6 +70,15 @@ const ChipherMap = () => {
           ).format("MMM D, YYYY")}`,
         })}
       />
+      <div className="flex text-sm justify-end">
+        <p className="flex-col mr-1">Less</p>
+        <span className="flex-col mr-1 border border-gray-300 px-1 bg-[#ebedf0]"></span>
+        <span className="flex-col mr-1 border border-gray-300 px-1 bg-[#9be9a8]"></span>
+        <span className="flex-col mr-1 border border-gray-300 px-1 bg-[#40c463]"></span>
+        <span className="flex-col mr-1 border border-gray-300 px-1 bg-[#30a14e]"></span>
+        <span className="flex-col mr-1 border border-gray-300 px-1 bg-[#216e39]"></span>
+        <p className="flex-col">More</p>
+      </div>
     </div>
   );
 };
