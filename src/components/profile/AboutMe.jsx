@@ -11,7 +11,7 @@ const AboutMe = () => {
   return (
     <div className="mx-12 my-8">
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-2xl font-semibold">About Me</h1>
+        <h1 className="text-2xl font-semibold uppercase">About Me</h1>
         <p
           onClick={handleSubmit}
           className="py-1 px-6 rounded-md bg-orange-400 text-white cursor-pointer"
