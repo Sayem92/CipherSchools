@@ -14,8 +14,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex  h-screen">
-      <div className="flex-1 bg-gray-200">
+    <div className="flex  h-full">
+      <div className="flex-1  bg-gray-200">
         {/* all profile section here */}
         <AboutMe></AboutMe>
         <ChipherMap></ChipherMap>

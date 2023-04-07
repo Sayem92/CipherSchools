@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import linkedIn from "../../assets/LinkedIn.svg";
 import Github from "../../assets/Github.svg";
 import Facebook from "../../assets/Facebook.svg";
@@ -8,6 +8,7 @@ import Website from "../../assets/Website.svg";
 
 const TheWeb = () => {
   const [open, setOpen] = useState(true);
+  const [change, setChange] = useState({});
   const [masterObject, setMasterObject] = useState({
     LinkedIn: "",
     Github: "",
@@ -17,9 +18,22 @@ const TheWeb = () => {
     Website: "",
   });
 
+  useEffect(() => {
+    const filteredObj = {};
+    for (const key in masterObject) {
+      if (masterObject[key] && masterObject[key] !== "") {
+        filteredObj[key] = masterObject[key];
+      }
+    }
+    setChange(filteredObj);
+  }, [masterObject]);
+
   const handleSubmit = () => {
     setOpen(!open);
-    console.log(masterObject);
+    if (!open) {
+      // set the value to data base 
+      console.log(change);
+    }
   };
 
   return (
@@ -45,7 +59,9 @@ const TheWeb = () => {
               name=""
               readOnly={open}
               value={masterObject?.LinkedIn}
-              onChange={(e)=>setMasterObject({...masterObject, LinkedIn: e.target.value})}
+              onChange={(e) =>
+                setMasterObject({ ...masterObject, LinkedIn: e.target.value })
+              }
             ></input>
           </div>
         </div>
@@ -58,6 +74,10 @@ const TheWeb = () => {
               type="text"
               name=""
               readOnly={open}
+              value={masterObject?.Github}
+              onChange={(e) =>
+                setMasterObject({ ...masterObject, Github: e.target.value })
+              }
             ></input>
           </div>
         </div>
@@ -70,6 +90,10 @@ const TheWeb = () => {
               type="text"
               name=""
               readOnly={open}
+              value={masterObject?.Facebook}
+              onChange={(e) =>
+                setMasterObject({ ...masterObject, Facebook: e.target.value })
+              }
             ></input>
           </div>
         </div>
@@ -82,6 +106,10 @@ const TheWeb = () => {
               type="text"
               name=""
               readOnly={open}
+              value={masterObject?.Twitter}
+              onChange={(e) =>
+                setMasterObject({ ...masterObject, Twitter: e.target.value })
+              }
             ></input>
           </div>
         </div>
@@ -94,6 +122,10 @@ const TheWeb = () => {
               type="text"
               name=""
               readOnly={open}
+              value={masterObject?.Instagram}
+              onChange={(e) =>
+                setMasterObject({ ...masterObject, Instagram: e.target.value })
+              }
             ></input>
           </div>
         </div>
@@ -106,6 +138,10 @@ const TheWeb = () => {
               type="text"
               name=""
               readOnly={open}
+              value={masterObject?.Website}
+              onChange={(e) =>
+                setMasterObject({ ...masterObject, Website: e.target.value })
+              }
             ></input>
           </div>
         </div>
