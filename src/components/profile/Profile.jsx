@@ -6,6 +6,7 @@ import AboutMe from "./AboutMe";
 import TheWeb from "./TheWeb";
 import ChipherMap from "./chipherMap/ChipherMap";
 import ProInfor from "./proInfor/ProInfor";
+import Password from "./password/Password";
 // import ProInfor from "./ProInfor";
 
 const Profile = () => {
@@ -23,6 +24,7 @@ const Profile = () => {
         <ChipherMap></ChipherMap>
         <TheWeb></TheWeb>
         <ProInfor></ProInfor>
+        <Password></Password>
         <button
           onClick={handleToggle}
           className={`bg-gray-100 text-black p-2 rounded-l-md absolute ${
