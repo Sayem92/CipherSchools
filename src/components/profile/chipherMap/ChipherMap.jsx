@@ -5,7 +5,6 @@ import ReactCalendarHeatmap from "react-calendar-heatmap";
 import ReactTooltip from "react-tooltip";
 import "react-calendar-heatmap/dist/styles.css";
 
-
 const ChipherMap = () => {
   const [contributions, setContributions] = useState([]);
 
@@ -30,6 +29,8 @@ const ChipherMap = () => {
       data-for="contributions-tooltip"
       data-event-off="mouseout"
     >
+      <p className="mb-4 border border-t-0 border-gray-300"></p>
+      <h1 className="text-xl mb-6 font-semibold uppercase">CIPHER MAP</h1>
       <ReactTooltip
       //  id="heatmap-tooltip"
       />
