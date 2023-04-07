@@ -31,7 +31,7 @@ const TheWeb = () => {
   const handleSubmit = () => {
     setOpen(!open);
     if (!open) {
-      // set the value to data base 
+      // set the value to data base
       console.log(change);
     }
   };
@@ -56,8 +56,8 @@ const TheWeb = () => {
             <input
               className="w-full py-2 outline-none"
               type="text"
-              name=""
               readOnly={open}
+              placeholder="LinkedIn"
               value={masterObject?.LinkedIn}
               onChange={(e) =>
                 setMasterObject({ ...masterObject, LinkedIn: e.target.value })
@@ -72,8 +72,8 @@ const TheWeb = () => {
             <input
               className="w-full py-2 outline-none"
               type="text"
-              name=""
               readOnly={open}
+              placeholder="Github"
               value={masterObject?.Github}
               onChange={(e) =>
                 setMasterObject({ ...masterObject, Github: e.target.value })
@@ -88,7 +88,7 @@ const TheWeb = () => {
             <input
               className="w-full py-2 outline-none"
               type="text"
-              name=""
+              placeholder="Facebook"
               readOnly={open}
               value={masterObject?.Facebook}
               onChange={(e) =>
@@ -104,7 +104,7 @@ const TheWeb = () => {
             <input
               className="w-full py-2 outline-none"
               type="text"
-              name=""
+              placeholder="Twitter"
               readOnly={open}
               value={masterObject?.Twitter}
               onChange={(e) =>
@@ -120,8 +120,8 @@ const TheWeb = () => {
             <input
               className="w-full py-2 outline-none"
               type="text"
-              name=""
               readOnly={open}
+              placeholder="Instagram"
               value={masterObject?.Instagram}
               onChange={(e) =>
                 setMasterObject({ ...masterObject, Instagram: e.target.value })
@@ -136,7 +136,7 @@ const TheWeb = () => {
             <input
               className="w-full py-2 outline-none"
               type="text"
-              name=""
+              placeholder="Website"
               readOnly={open}
               value={masterObject?.Website}
               onChange={(e) =>

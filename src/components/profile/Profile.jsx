@@ -5,6 +5,8 @@ import SideBar from "./SideBar";
 import AboutMe from "./AboutMe";
 import TheWeb from "./TheWeb";
 import ChipherMap from "./chipherMap/ChipherMap";
+import ProInfor from "./proInfor/ProInfor";
+// import ProInfor from "./ProInfor";
 
 const Profile = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -20,6 +22,7 @@ const Profile = () => {
         <AboutMe></AboutMe>
         <ChipherMap></ChipherMap>
         <TheWeb></TheWeb>
+        <ProInfor></ProInfor>
         <button
           onClick={handleToggle}
           className={`bg-gray-100 text-black p-2 rounded-l-md absolute ${
