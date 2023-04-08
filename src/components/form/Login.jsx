@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { LoaderSpin } from "../loader/Loader";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const {
@@ -10,7 +11,7 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  // const { signIn, googleLogin, forgetPassword } = useContext(AuthContext);
+ 
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -31,8 +32,28 @@ const Login = () => {
     // navigate('/')
     // set for user token-------------
 
-    console.log(data);
-    setLoading(false);
+     // sava information to the database----------
+     fetch(`http://localhost:5000/login`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          if (result?.status === 200) {
+            setLoading(false);
+            setLoginError('')
+            toast.success(`${result?.message}`);
+            // navigate('/');
+          }
+          else{
+            setLoginError(`${result?.message}`);
+            setLoading(false);
+          }
+        });
   };
 
   return (
