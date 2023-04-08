@@ -1,6 +1,7 @@
 import React from "react";
 import bg from "../../assets/headerbg.jpg";
 import edit from "../../assets/pen-edit.svg";
+import ProfileEditModal from "./ProfileEditModal";
 
 const Header = () => {
   return (
@@ -11,11 +12,14 @@ const Header = () => {
       <div className="flex items-center gap-5">
         <div>
           <img
-            className="rounded-full"
+            className="rounded-full w-20"
             src="https://lh3.googleusercontent.com/a/AGNmyxZyymN0L8UiTBNn3PPLDMKktDDem3EKKS2CNYNH3w=s96-c"
             alt=""
           />
-          <img className="-mt-4 ml-12" src={edit} alt="" />
+          <label htmlFor="profile-Edit-Modal">
+          <img className="-mt-4 ml-10 cursor-pointer" src={edit} alt="" />
+          </label>
+          <ProfileEditModal></ProfileEditModal>
          
         </div>
         <div className="text-white">
@@ -24,7 +28,7 @@ const Header = () => {
           <h1>sayemmiha123@gmail.com</h1>
         </div>
       </div>
-      <div className="text-white font-bold">0 Followers</div>
+      <div className="text-white font-bold cursor-pointer">0 Followers</div>
     </div>
   );
 };

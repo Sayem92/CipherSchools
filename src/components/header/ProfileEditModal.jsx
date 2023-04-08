@@ -1,0 +1,170 @@
+import React from "react";
+import edit from "../../assets/pen-edit.svg";
+import { useState } from "react";
+
+const ProfileEditModal = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const imageHostKey = process.env.REACT_APP_IMGBB_key;
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [image, setImage] = useState("");
+
+  const handleImageChange = (e) => {
+    setIsLoading(true);
+    const image = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          // console.log(imgData.data.display_url);
+          setImage(imgData.data.display_url);
+          setIsLoading(false);
+        }
+      });
+  };
+
+  const handleSubmit = () => {
+    const value = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      image,
+    };
+
+    const filteredObj = {};
+    for (const key in value) {
+      if (value[key] && value[key] !== "") {
+        filteredObj[key] = value[key];
+      }
+    }
+
+    // call the api and set he value
+    console.log(filteredObj);
+  };
+
+  return (
+    <div>
+      <input type="checkbox" id="profile-Edit-Modal" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative pt-2">
+          <label
+            htmlFor="profile-Edit-Modal"
+            className="btn btn-sm text-xl hover:bg-white bg-white text-black border-none absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className="text-lg font-bold">Profile Update</h3>
+          {/* main  */}
+          <div className="flex  items-center gap-5">
+            <div>
+              {isLoading ? (
+                <div class="flex items-center justify-center ">
+                  <div
+                    style={{ borderTopColor: "transparent" }}
+                    className="w-6 h-6 border-4 border-blue-500 rounded-full animate-spin"
+                  ></div>
+                </div>
+              ) : (
+                <img
+                  className="rounded-full w-44"
+                  src={
+                    image
+                      ? image
+                      : "https://lh3.googleusercontent.com/a/AGNmyxZyymN0L8UiTBNn3PPLDMKktDDem3EKKS2CNYNH3w=s96-c"
+                  }
+                  alt=""
+                />
+              )}
+
+              <label className="label">
+                <img className="-mt-4 ml-16 cursor-pointer" src={edit} alt="" />
+
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={(e) => handleImageChange(e)}
+                />
+              </label>
+            </div>
+
+            <div className="w-full">
+              <div className="mt-3">
+                <p className="font-semibold">First Name</p>
+                <div className="relative">
+                  <input
+                    className="w-full py-2 rounded-md px-4 outline-none bg-slate-100"
+                    type="text"
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="mt-3">
+                <p className="font-semibold">Last Name</p>
+                <div className="relative">
+                  <input
+                    className="w-full py-2 rounded-md px-4 outline-none bg-slate-100"
+                    type="text"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="mt-3">
+                <p className="font-semibold">Email Address</p>
+                <div className="relative">
+                  <input
+                    className="w-full py-2 rounded-md px-4 outline-none bg-slate-100"
+                    type="email"
+                    placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="mt-3">
+                <p className="font-semibold">Mobile Number</p>
+                <div className="relative">
+                  <input
+                    className="w-full py-2 rounded-md px-4 outline-none bg-slate-100"
+                    type="number"
+                    placeholder="Mobile Number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="modal-action">
+            <label
+              htmlFor="profile-Edit-Modal"
+              className="btn btn-sm mr-5 px-6"
+            >
+              Cancel
+            </label>
+            <label
+              onClick={handleSubmit}
+              className="py-1 px-7 rounded-md bg-orange-400 text-white cursor-pointer"
+            >
+              Save
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProfileEditModal;
