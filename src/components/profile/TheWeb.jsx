@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import linkedIn from "../../assets/LinkedIn.svg";
 import Github from "../../assets/Github.svg";
 import Facebook from "../../assets/Facebook.svg";
 import Twitter from "../../assets/Twitter.svg";
 import Instagram from "../../assets/Instagram.svg";
 import Website from "../../assets/Website.svg";
+import { AuthContext } from "../../context/AuthProvider";
 
 const TheWeb = () => {
+  const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(true);
   const [change, setChange] = useState({});
   const [masterObject, setMasterObject] = useState({
@@ -31,10 +33,46 @@ const TheWeb = () => {
   const handleSubmit = () => {
     setOpen(!open);
     if (!open) {
-      // set the value to data base
-      console.log(change);
+      // console.log(change);
+      // sava information to the database----------
+      fetch(`http://localhost:5000/profile/${user?.email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(change),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data) {
+            localStorage.setItem("OnTheWeb", JSON.stringify(change));
+          }
+        });
     }
   };
+
+  useEffect(() => {
+    if (
+      masterObject?.LinkedIn === "" ||
+      masterObject?.Github === "" ||
+      masterObject?.Twitter === "" ||
+      masterObject?.Instagram === "" ||
+      masterObject?.Facebook === "" ||
+      masterObject?.Website === ""
+    ) {
+      const value = JSON.parse(localStorage.getItem("OnTheWeb"));
+      console.log(value);
+      setMasterObject(value);
+    }
+  }, [
+    masterObject?.LinkedIn,
+    masterObject?.Github,
+    masterObject?.Twitter,
+    masterObject?.Instagram,
+    masterObject?.Facebook,
+    masterObject?.Website,
+  ]);
 
   return (
     <div className="mx-12 my-8">
