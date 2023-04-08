@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoaderSpin } from "../loader/Loader";
 import { toast } from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Login = () => {
   const {
@@ -11,13 +13,13 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
- 
+  const { setUser } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false);
 
   // const location = useLocation();
   // const from = location?.state?.from?.pathname || '/';
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // if (token) {
   //     navigate(from, { replace: true })
@@ -25,41 +27,41 @@ const Login = () => {
 
   // user login-------------------
   const handleLogin = (data) => {
-    setLoginError("");
     setLoading(true);
 
-    // toast.success('Login Successfully!');
-    // navigate('/')
-    // set for user token-------------
+    // sava information to the database----------
+    fetch(`http://localhost:5000/login`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        if (result?.status === 200) {
+          setLoading(false);
+          setLoginError("");
+          toast.success(`${result?.message}`);
 
-     // sava information to the database----------
-     fetch(`http://localhost:5000/login`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          if (result?.status === 200) {
-            setLoading(false);
-            setLoginError('')
-            toast.success(`${result?.message}`);
-            // navigate('/');
-          }
-          else{
-            setLoginError(`${result?.message}`);
-            setLoading(false);
-          }
-        });
+          // save local
+          setUser(result?.user);
+          localStorage.setItem("user", JSON.stringify(result?.user));
+          navigate("/myProfile");
+        } else {
+          setLoginError(`${result?.message}`);
+          setLoading(false);
+        }
+      });
   };
 
   return (
     <div className="h-[800px] flex justify-center items-center ">
       <div className="w-96 p-7 shadow-xl mx-2">
-        <h2 className="text-4xl py-4 text-center text-info font-bold">Sign In</h2>
+        <h2 className="text-4xl py-4 text-center text-info font-bold">
+          Sign In
+        </h2>
         <p>
           <small>Email:</small>{" "}
           <strong className="ml-2 md:ml-16"> waliur@gmail.com</strong>

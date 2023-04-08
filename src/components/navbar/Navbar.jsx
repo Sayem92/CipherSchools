@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-// import toast from 'react-hot-toast';
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   let activeStyle = {
     textDecoration: "underline",
-    color: "green",
+    color: "blue",
   };
 
   const handleLogOut = () => {
-    // logOut()
-    //   .then(() => {
-    //     toast.success('logout successfully')
-    //     navigate('/')
-    //   })
-    //   .catch(err => console.log(err))
+    const userInfo = {};
+    setUser(userInfo);
+    localStorage.removeItem("user");
+    toast.success("logout successfully");
+    navigate("/");
+    window.location.reload();
   };
 
+  console.log(user);
   return (
     <div className="bg-gray-100 ">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -55,6 +56,17 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
+            {user && (
+              <li>
+                <Link to="/myProfile">
+                  <img
+                    className="w-10 h-10 rounded-full"
+                    src={user?.image}
+                    alt=""
+                  ></img>
+                </Link>
+              </li>
+            )}
 
             {user ? (
               <li>
@@ -151,6 +163,18 @@ const Navbar = () => {
                           Home
                         </NavLink>
                       </li>
+
+                      {user && (
+                        <li>
+                          <Link to="/myProfile">
+                            <img
+                              className="w-10 h-10 rounded-full"
+                              src={user?.image}
+                              alt=""
+                            ></img>
+                          </Link>
+                        </li>
+                      )}
 
                       {user ? (
                         <li>

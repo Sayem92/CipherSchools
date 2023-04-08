@@ -12,7 +12,7 @@ import Upcoming from "../upcoming/Upcoming";
 
 const Profile = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(1);
 
   const handleToggle = () => {
     setIsCollapsed((prev) => !prev);

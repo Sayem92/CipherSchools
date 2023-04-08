@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoaderSpin } from "../loader/Loader";
 import { toast } from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
   const {
@@ -11,10 +13,11 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const { setUser } = useContext(AuthContext);
   const [signUpError, setSignUpError] = useState("");
   const imageHostKey = process.env.REACT_APP_IMGBB_key;
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   // user sign up---------
   const handleSignUp = (data) => {
@@ -32,7 +35,6 @@ const Register = () => {
       .then((imgData) => {
         // console.log(imgData);
         if (imgData.success) {
-
           // save data -------------
           const userData = {
             firstName: data.firstName,
@@ -55,11 +57,14 @@ const Register = () => {
               console.log(result);
               if (result?.status === 200) {
                 setLoading(false);
-                setSignUpError('')
+                setSignUpError("");
                 toast.success(`${result?.message}`);
-                // navigate('/dashboard/myProducts');
-              }
-              else{
+
+                // save local
+                setUser(result?.user);
+                localStorage.setItem("user", JSON.stringify(result?.user));
+                navigate("/myProfile");
+              } else {
                 setSignUpError(`${result?.message}`);
                 setLoading(false);
               }
