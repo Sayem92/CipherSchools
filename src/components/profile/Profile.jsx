@@ -8,6 +8,7 @@ import ChipherMap from "./chipherMap/ChipherMap";
 import ProInfor from "./proInfor/ProInfor";
 import Password from "./password/Password";
 import Interests from "./interests/Interests";
+import Upcoming from "../upcoming/Upcoming";
 
 const Profile = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -40,6 +41,14 @@ const Profile = () => {
             </style>
           </div>
         )}
+
+        {selected === 0 ||
+        selected === 2 ||
+        selected === 3 ||
+        selected === 4 ? (
+          <Upcoming />
+        ) : null}
+
         <button
           onClick={handleToggle}
           className={`bg-gray-100 text-black p-2 rounded-l-md absolute ${

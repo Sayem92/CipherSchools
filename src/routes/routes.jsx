@@ -5,6 +5,7 @@ import Home from "../components/home/Home";
 import Register from "../components/form/Register";
 import Login from "../components/form/Login";
 import Upcoming from "../components/upcoming/Upcoming";
+import MyProfile from "../components/profile/myProfile/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/courses/:coursesName",
         element: <Upcoming></Upcoming>,
+      },
+      {
+        path: "/myProfile",
+        element: <MyProfile></MyProfile>,
       },
     ],
   },

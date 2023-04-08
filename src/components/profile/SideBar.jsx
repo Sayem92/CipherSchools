@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const SideBar = ({selected, setSelected}) => {
-   
+const SideBar = ({ selected, setSelected }) => {
   const handleSelect = (index) => {
     setSelected(index);
   };
@@ -18,7 +16,7 @@ const SideBar = ({selected, setSelected}) => {
           } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
           onClick={() => handleSelect(0)}
         >
-          <Link to="/" className="flex items-center gap-3">
+          <p className="flex items-center gap-3">
             <svg
               viewBox="0 0 48 48"
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +52,7 @@ const SideBar = ({selected, setSelected}) => {
               </g>
             </svg>
             Dashboard
-          </Link>
+          </p>
         </li>
         <li
           className={`${
@@ -64,7 +62,7 @@ const SideBar = ({selected, setSelected}) => {
           } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
           onClick={() => handleSelect(1)}
         >
-          <Link to="/" className="flex items-center gap-3">
+          <p className="flex items-center gap-3">
             <svg
               viewBox="0 0 24 24"
               width="28px"
@@ -91,7 +89,7 @@ const SideBar = ({selected, setSelected}) => {
               </g>
             </svg>
             <span className=""> My Profile</span>
-          </Link>
+          </p>
         </li>
         <li
           className={`${
@@ -101,7 +99,7 @@ const SideBar = ({selected, setSelected}) => {
           } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
           onClick={() => handleSelect(2)}
         >
-          <Link to="/" className="flex items-center gap-3">
+          <p className="flex items-center gap-3">
             <svg
               fill={selected === 2 ? "white" : "black"}
               viewBox="0 0 24 24"
@@ -122,7 +120,7 @@ const SideBar = ({selected, setSelected}) => {
               </g>
             </svg>
             Enrolled Course
-          </Link>
+          </p>
         </li>
         <li
           className={`${
@@ -132,7 +130,7 @@ const SideBar = ({selected, setSelected}) => {
           } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
           onClick={() => handleSelect(3)}
         >
-          <Link to="/" className="flex items-center gap-3">
+          <p className="flex items-center gap-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 64 64"
@@ -154,7 +152,7 @@ const SideBar = ({selected, setSelected}) => {
               </g>
             </svg>
             Wishlist
-          </Link>
+          </p>
         </li>
         <li
           className={`${
@@ -164,7 +162,7 @@ const SideBar = ({selected, setSelected}) => {
           } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
           onClick={() => handleSelect(4)}
         >
-          <Link to="/" className="flex items-center gap-3">
+          <p className="flex items-center gap-3">
             <svg
               viewBox="0 0 24 24"
               width="28px"
@@ -182,13 +180,12 @@ const SideBar = ({selected, setSelected}) => {
                   fillRule="evenodd"
                   clipRule="evenodd"
                   d="M15.9 4.5C15.9 3 14.418 2 13.26 2c-.806 0-.869.612-.993 1.82-.055.53-.121 1.174-.267 1.93-.386 2.002-1.72 4.56-2.996 5.325V17C9 19.25 9.75 20 13 20h3.773c2.176 0 2.703-1.433 2.899-1.964l.013-.036c.114-.306.358-.547.638-.82.31-.306.664-.653.927-1.18.311-.623.27-1.177.233-1.67-.023-.299-.044-.575.017-.83.064-.27.146-.475.225-.671.143-.356.275-.686.275-1.329 0-1.5-.748-2.498-2.315-2.498H15.5S15.9 6 15.9 4.5zM5.5 10A1.5 1.5 0 0 0 4 11.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 5.5 10z"
-                  // fill="#000000"
                   stroke={selected === 4 ? "#ffffff" : "#000000"}
                 ></path>
               </g>
             </svg>
             Liked Videos
-          </Link>
+          </p>
         </li>
       </ul>
     </div>

@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
-import { useContext } from 'react';
+import React, { useState } from "react";
+import { useContext } from "react";
 // import toast from 'react-hot-toast';
-import {  NavLink} from 'react-router-dom';
-import logo from '../../assets/logo.png'
-import { AuthContext } from '../../context/AuthProvider';
-
+import { NavLink } from "react-router-dom";
+import logo from "../../assets/logo.png";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Navbar = () => {
-
   const { user } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-//   const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
   let activeStyle = {
     textDecoration: "underline",
-    color : 'green'
+    color: "green",
   };
 
   const handleLogOut = () => {
@@ -24,11 +22,10 @@ const Navbar = () => {
     //     navigate('/')
     //   })
     //   .catch(err => console.log(err))
-  }
-
+  };
 
   return (
-    <div className="bg-gray-100 " >
+    <div className="bg-gray-100 ">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <div className="flex items-center">
@@ -38,7 +35,7 @@ const Navbar = () => {
               title="CipherSchools"
               className="inline-flex items-center mr-8"
             >
-              <img className='w-12 h-12 rounded-xl' src={logo} alt="" />
+              <img className="w-12 h-12 rounded-xl" src={logo} alt="" />
 
               <span className="ml-2 text-xl text-blue-500 font-bold tracking-wide">
                 CipherSchools
@@ -47,23 +44,19 @@ const Navbar = () => {
           </div>
 
           <ul className="flex items-center hidden space-x-8 lg:flex">
-          <li>
-                <NavLink
-                style={({ isActive }) =>
-                isActive ? activeStyle : undefined
-              }
-                  to="/home"
-                  aria-label="Home"
-                  title="Home"
-                  className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
-                >
-                  Home
-                </NavLink>
-              </li>
+            <li>
+              <NavLink
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                to="/home"
+                aria-label="Home"
+                title="Home"
+                className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
+              >
+                Home
+              </NavLink>
+            </li>
 
-
-            {user ?
-
+            {user ? (
               <li>
                 <button
                   onClick={handleLogOut}
@@ -74,9 +67,7 @@ const Navbar = () => {
                   Logout
                 </button>
               </li>
-
-              :
-
+            ) : (
               <li>
                 <NavLink
                   to="/register"
@@ -87,9 +78,7 @@ const Navbar = () => {
                   Sign up
                 </NavLink>
               </li>
-
-            }
-
+            )}
           </ul>
           <div className="lg:hidden">
             <button
@@ -124,8 +113,7 @@ const Navbar = () => {
                         title="CipherSchools"
                         className="inline-flex items-center"
                       >
-
-                        <img className='w-8 h-8 rounded-xl' src={logo} alt="" />
+                        <img className="w-8 h-8 rounded-xl" src={logo} alt="" />
 
                         <span className="ml-2 text-xl font-bold tracking-wide text-blue-500 uppercase">
                           CipherSchools
@@ -152,9 +140,9 @@ const Navbar = () => {
                     <ul className="space-y-4">
                       <li>
                         <NavLink
-                        style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
-                      }
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
                           to="/home"
                           aria-label="Home"
                           title="Home"
@@ -164,36 +152,29 @@ const Navbar = () => {
                         </NavLink>
                       </li>
 
-                    
-
-                      {
-                        user ?
-
-                          <li>
-                            <button
-                              onClick={handleLogOut}
-                              className="inline-flex items-center justify-center h-12 px-6 font-medium w-full tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                              aria-label="Logout"
-                              title="Logout"
-                            >
-                              Logout
-                            </button>
-                          </li>
-
-                          :
-
-                          <li>
-                            <NavLink
-                              to="/register"
-                              className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-sky-400 hover:bg-sky-500 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                              aria-label="Sign up"
-                              title="Sign up"
-                            >
-                              Sign up
-                            </NavLink>
-                          </li>
-                      }
-
+                      {user ? (
+                        <li>
+                          <button
+                            onClick={handleLogOut}
+                            className="inline-flex items-center justify-center h-12 px-6 font-medium w-full tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                            aria-label="Logout"
+                            title="Logout"
+                          >
+                            Logout
+                          </button>
+                        </li>
+                      ) : (
+                        <li>
+                          <NavLink
+                            to="/register"
+                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-sky-400 hover:bg-sky-500 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                            aria-label="Sign up"
+                            title="Sign up"
+                          >
+                            Sign up
+                          </NavLink>
+                        </li>
+                      )}
                     </ul>
                   </nav>
                 </div>
@@ -205,6 +186,5 @@ const Navbar = () => {
     </div>
   );
 };
-
 
 export default Navbar;
