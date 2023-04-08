@@ -6,6 +6,7 @@ import Register from "../components/form/Register";
 import Login from "../components/form/Login";
 import Upcoming from "../components/upcoming/Upcoming";
 import MyProfile from "../components/profile/myProfile/MyProfile";
+import AllFollower from "../components/allFollower/AllFollower";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,11 @@ export const router = createBrowserRouter([
         path: "/myProfile",
         element: <MyProfile></MyProfile>,
       },
+      {
+        path: "/followers",
+        element: <AllFollower></AllFollower>
+      },
+      
     ],
   },
 ]);

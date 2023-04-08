@@ -4,6 +4,7 @@ import edit from "../../assets/pen-edit.svg";
 import ProfileEditModal from "./ProfileEditModal";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [firstName, setFirstName] = useState("");
@@ -52,7 +53,9 @@ const Header = () => {
           <h1>{email ? email : "sayemmiha123@gmail.com"}</h1>
         </div>
       </div>
-      <div className="text-white font-bold cursor-pointer">0 Followers</div>
+      <Link to="/followers">
+        <div className="text-white font-bold cursor-pointer">0 Followers</div>
+      </Link>
     </div>
   );
 };
