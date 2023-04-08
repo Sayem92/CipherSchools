@@ -28,7 +28,7 @@ const ProInfor = () => {
       };
 
       // sava information to the database----------
-      fetch(`http://localhost:5000/profile/${user?.email}`, {
+      fetch(`https://chipher-schools-sever.vercel.app/profile/${user?.email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

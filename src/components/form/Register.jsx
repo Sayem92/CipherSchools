@@ -45,7 +45,7 @@ const Register = () => {
           };
 
           // sava information to the database----------
-          fetch(`http://localhost:5000/register`, {
+          fetch(`https://chipher-schools-sever.vercel.app/register`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

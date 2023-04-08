@@ -8,8 +8,10 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
   const { user } = useContext(AuthContext);
 
   const handleButtonClick = (buttonName) => {
-    if (selectedButtons.includes(buttonName)) {
-      setSelectedButtons(selectedButtons.filter((name) => name !== buttonName));
+    if (selectedButtons?.includes(buttonName)) {
+      setSelectedButtons(
+        selectedButtons?.filter((name) => name !== buttonName)
+      );
     } else {
       setSelectedButtons([...selectedButtons, buttonName]);
     }
@@ -19,11 +21,11 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
     // call the api and set he value
     // console.log(selectedButtons);
     const interests = {
-      interests: selectedButtons,
+      interests: selectedButtons || [],
     };
 
     // sava information to the database----------
-    fetch(`http://localhost:5000/profile/${user?.email}`, {
+    fetch(`https://chipher-schools-sever.vercel.app/profile/${user?.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -46,7 +48,9 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
     if (selectedButtons?.length === 0) {
       const value = JSON.parse(localStorage.getItem("interests"));
       // console.log(value?.interests);
-      setSelectedButtons(value?.interests);
+      if(value){
+        setSelectedButtons(value?.interests);
+      }
     }
   }, [selectedButtons?.length, setSelectedButtons]);
 
@@ -60,7 +64,7 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
           <div className="grid grid-cols-1 md:grid-cols-2">
             <button
               className={
-                selectedButtons.includes("App Development")
+                selectedButtons?.includes("App Development")
                   ? "selected"
                   : "bg-slate-100"
               }
@@ -70,7 +74,7 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
             </button>
             <button
               className={
-                selectedButtons.includes("Web Development")
+                selectedButtons?.includes("Web Development")
                   ? "selected"
                   : "bg-slate-100"
               }
@@ -80,7 +84,7 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
             </button>
             <button
               className={
-                selectedButtons.includes("Game Development")
+                selectedButtons?.includes("Game Development")
                   ? "selected"
                   : "bg-slate-100"
               }
@@ -90,7 +94,7 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
             </button>
             <button
               className={
-                selectedButtons.includes("Data Structures")
+                selectedButtons?.includes("Data Structures")
                   ? "selected"
                   : "bg-slate-100"
               }
@@ -100,7 +104,7 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
             </button>
             <button
               className={
-                selectedButtons.includes("Programming")
+                selectedButtons?.includes("Programming")
                   ? "selected"
                   : "bg-slate-100"
               }
@@ -110,7 +114,7 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
             </button>
             <button
               className={
-                selectedButtons.includes("Machine Learning")
+                selectedButtons?.includes("Machine Learning")
                   ? "selected"
                   : "bg-slate-100"
               }
@@ -120,7 +124,7 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
             </button>
             <button
               className={
-                selectedButtons.includes("Data Science")
+                selectedButtons?.includes("Data Science")
                   ? "selected"
                   : "bg-slate-100"
               }
@@ -130,7 +134,9 @@ const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
             </button>
             <button
               className={
-                selectedButtons.includes("Others") ? "selected" : "bg-slate-100"
+                selectedButtons?.includes("Others")
+                  ? "selected"
+                  : "bg-slate-100"
               }
               onClick={() => handleButtonClick("Others")}
             >

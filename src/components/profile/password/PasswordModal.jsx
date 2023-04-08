@@ -32,13 +32,16 @@ const PasswordModal = () => {
     } else {
       // console.log(change);
       // sava information to the database----------
-      fetch(`http://localhost:5000/password-reset/${user?.email}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(change),
-      })
+      fetch(
+        `https://chipher-schools-sever.vercel.app/password-reset/${user?.email}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(change),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

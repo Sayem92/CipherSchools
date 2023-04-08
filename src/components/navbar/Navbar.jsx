@@ -19,6 +19,12 @@ const Navbar = () => {
     const userInfo = {};
     setUser(userInfo);
     localStorage.removeItem("user");
+    localStorage.removeItem("proInfor");
+    localStorage.removeItem("interests");
+    localStorage.removeItem("OnTheWeb");
+    localStorage.removeItem("about");
+    localStorage.removeItem("interests");
+
     toast.success("logout successfully");
     navigate("/");
     window.location.reload();

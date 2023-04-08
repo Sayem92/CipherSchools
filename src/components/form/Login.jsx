@@ -30,7 +30,7 @@ const Login = () => {
     setLoading(true);
 
     // sava information to the database----------
-    fetch(`http://localhost:5000/login`, {
+    fetch(`https://chipher-schools-sever.vercel.app/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -44,10 +44,38 @@ const Login = () => {
           setLoading(false);
           setLoginError("");
           toast.success(`${result?.message}`);
-
+          console.log(result?.user);
           // save local
-          setUser(result?.user);
-          localStorage.setItem("user", JSON.stringify(result?.user));
+          const newUser = {
+            firstName: result?.user?.firstName,
+            lastName: result?.user?.lastName,
+            email: result?.user?.email,
+            image: result?.user?.image,
+            phone: result?.user?.phone,
+          };
+          setUser(newUser);
+          localStorage.setItem("user", JSON.stringify(newUser));
+          const aboutMe = {
+            about: result?.user?.about,
+          };
+          localStorage.setItem("about", JSON.stringify(aboutMe));
+          const OnTheWeb = {
+            LinkedIn: result?.user?.LinkedIn,
+            Github: result?.user?.Github,
+            Facebook: result?.user?.Facebook,
+            Twitter: result?.user?.Twitter,
+            Instagram: result?.user?.Instagram,
+            Website: result?.user?.Website,
+          };
+          localStorage.setItem("OnTheWeb", JSON.stringify(OnTheWeb));
+          const proInfor = {
+            highestEdu: result?.user?.highestEdu,
+            current: result?.user?.current,
+          };
+          localStorage.setItem("proInfor", JSON.stringify(proInfor));
+          const interests = { interests: result?.user?.interests };
+          localStorage.setItem("interests", JSON.stringify(interests));
+
           navigate("/myProfile");
         } else {
           setLoginError(`${result?.message}`);

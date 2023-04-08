@@ -2,6 +2,8 @@ import React from "react";
 import edit from "../../assets/pen-edit.svg";
 import { useState } from "react";
 import { LoaderSpin } from "../loader/Loader";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 const ProfileEditModal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -49,8 +51,47 @@ const ProfileEditModal = () => {
     }
 
     // call the api and set he value
-    console.log(filteredObj);
+    // console.log("filter",filteredObj);
+
+    // sava information to the database----------
+    fetch(`https://chipher-schools-sever.vercel.app/profile/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(filteredObj),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          toast.success("User Information Updated");
+          localStorage.setItem("user", JSON.stringify(filteredObj));
+          // close the modal
+          const modal = document.getElementById("profile-Edit-Modal");
+          modal.checked = false;
+        }
+      });
   };
+
+  useEffect(() => {
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      phone === "" ||
+      image === ""
+    ) {
+      const value = JSON.parse(localStorage.getItem("user"));
+      // // setAbout(value);
+      // console.log(value);
+      setFirstName(value?.firstName);
+      setLastName(value?.lastName);
+      setEmail(value?.email);
+      setPhone(value?.phone);
+      setImage(value?.image);
+    }
+  }, [firstName, lastName, email, phone, image]);
 
   return (
     <div>
@@ -73,7 +114,7 @@ const ProfileEditModal = () => {
                 </div>
               ) : (
                 <img
-                  className="rounded-full w-44"
+                  className="rounded-full w-44 h-[120px]"
                   src={
                     image
                       ? image
@@ -123,7 +164,7 @@ const ProfileEditModal = () => {
                 <p className="font-semibold">Email Address</p>
                 <div className="relative">
                   <input
-                    className="w-full py-2 rounded-md px-4 outline-none bg-slate-100"
+                    className="w-full py-2 rounded-md px-4 outline-none bg-slate-100 cursor-not-allowed"
                     type="email"
                     readOnly
                     placeholder="Email Address"
