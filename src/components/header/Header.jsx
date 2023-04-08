@@ -54,7 +54,10 @@ const Header = () => {
         </div>
       </div>
       <Link to="/followers">
-        <div className="text-white font-bold cursor-pointer">0 Followers</div>
+        <div className="text-white font-bold cursor-pointer">
+          {
+            localStorage.getItem("follower")
+          } Followers</div>
       </Link>
     </div>
   );

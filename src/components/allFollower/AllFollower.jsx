@@ -16,7 +16,7 @@ const AllFollower = () => {
           `https://chipher-schools-sever.vercel.app/follower`
         );
         const data = await res.json();
-
+        localStorage.setItem("follower", data?.length);
         return data;
       } catch (err) {
         console.log(err);
