@@ -9,7 +9,7 @@ const Loader = () => {
   );
 };
 
-export const LoaderSpin = ({ className, size = 20 }) => (
+export const LoaderSpin = ({ className, size = 24 }) => (
   <BiLoader size={size} className={`animate-spin ${className}`} />
 );
 

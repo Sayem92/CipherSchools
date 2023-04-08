@@ -159,10 +159,10 @@ const Register = () => {
           </div>
 
           <button
-            className="mt-3 btn btn-accent text-white w-full max-w-xs"
+            className="mx-0 mt-5 btn btn-accent text-white w-full max-w-xs"
             type="submit"
           >
-            {loading ? <LoaderSpin /> : "Sign Up"}
+            {loading ? <LoaderSpin className={"text-white"} /> : "Sign Up"}
           </button>
 
           <div>
