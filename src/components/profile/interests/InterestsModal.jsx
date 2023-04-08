@@ -1,9 +1,11 @@
 import React from "react";
-import { useState } from "react";
 import "./interests.css";
+import { AuthContext } from "../../../context/AuthProvider";
+import { useContext } from "react";
+import { useEffect } from "react";
 
-const InterestsModal = () => {
-  const [selectedButtons, setSelectedButtons] = useState([]);
+const InterestsModal = ({ selectedButtons, setSelectedButtons }) => {
+  const { user } = useContext(AuthContext);
 
   const handleButtonClick = (buttonName) => {
     if (selectedButtons.includes(buttonName)) {
@@ -15,8 +17,38 @@ const InterestsModal = () => {
 
   const handleSubmit = () => {
     // call the api and set he value
-    console.log(selectedButtons);
+    // console.log(selectedButtons);
+    const interests = {
+      interests: selectedButtons,
+    };
+
+    // sava information to the database----------
+    fetch(`http://localhost:5000/profile/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(interests),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          localStorage.setItem("interests", JSON.stringify(interests));
+          // close the modal
+          const modal = document.getElementById("interests-modal");
+          modal.checked = false;
+        }
+      });
   };
+
+  useEffect(() => {
+    if (selectedButtons?.length === 0) {
+      const value = JSON.parse(localStorage.getItem("interests"));
+      // console.log(value?.interests);
+      setSelectedButtons(value?.interests);
+    }
+  }, [selectedButtons?.length, setSelectedButtons]);
 
   return (
     <div>

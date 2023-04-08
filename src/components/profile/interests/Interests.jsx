@@ -1,7 +1,9 @@
 import React from "react";
 import InterestsModal from "./InterestsModal";
+import { useState } from "react";
 
 const Interests = () => {
+  const [selectedButtons, setSelectedButtons] = useState([]);
   return (
     <div className="mx-12 my-8">
       <p className="mb-4 border border-t-0 border-gray-300"></p>
@@ -14,8 +16,18 @@ const Interests = () => {
           Edit
         </label>
       </div>
-      <InterestsModal></InterestsModal>
-      <div>{/* use map here saw all selected value  */}</div>
+      <InterestsModal
+        selectedButtons={selectedButtons}
+        setSelectedButtons={setSelectedButtons}
+      ></InterestsModal>
+      <div>
+        {/* use map here saw all selected value  */}
+        {selectedButtons?.map((select, i) => (
+          <button key={i} className="btn btn-sm bg-orange-400 text-white">
+            {select}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
