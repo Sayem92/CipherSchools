@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import "./ProInfor.css";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider";
+import { useEffect } from "react";
 
 const ProInfor = () => {
+  const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(true);
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedValue2, setSelectedValue2] = useState("");
-
-  const handleSubmit = () => {
-    setOpen(!open);
-    if (!open) {
-      // set the value to data base
-      console.log(selectedValue);
-      console.log(selectedValue2);
-    }
-  };
 
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
@@ -22,6 +17,41 @@ const ProInfor = () => {
   const handleSelectChange2 = (event) => {
     setSelectedValue2(event.target.value);
   };
+
+  const handleSubmit = () => {
+    setOpen(!open);
+    if (!open) {
+      // set the value to data base
+      const proInfor = {
+        highestEdu: selectedValue,
+        current: selectedValue2,
+      };
+
+      // sava information to the database----------
+      fetch(`http://localhost:5000/profile/${user?.email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(proInfor),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data) {
+            localStorage.setItem("proInfor", JSON.stringify(proInfor));
+          }
+        });
+    }
+  };
+
+  useEffect(() => {
+    if (selectedValue === "" || selectedValue2 === "") {
+      const value = JSON.parse(localStorage.getItem("proInfor"));
+      setSelectedValue(value?.highestEdu);
+      setSelectedValue2(value?.current);
+    }
+  }, [selectedValue, selectedValue2]);
 
   return (
     <div className="mx-12 my-12">

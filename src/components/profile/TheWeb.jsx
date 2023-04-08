@@ -62,7 +62,6 @@ const TheWeb = () => {
       masterObject?.Website === ""
     ) {
       const value = JSON.parse(localStorage.getItem("OnTheWeb"));
-      console.log(value);
       setMasterObject(value);
     }
   }, [
