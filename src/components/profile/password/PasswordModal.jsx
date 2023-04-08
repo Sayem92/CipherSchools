@@ -1,10 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const PasswordModal = () => {
+  const { user } = useContext(AuthContext);
   const [change, setChange] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [passwordObject, setPasswordObject] = useState({
@@ -27,9 +30,34 @@ const PasswordModal = () => {
     if (passwordObject.newPassword !== passwordObject.confirmPassword) {
       return toast.error("New password and confirm password are not match");
     } else {
-
-        // call the api  and navigate
-      console.log(change);
+      // console.log(change);
+      // sava information to the database----------
+      fetch(`http://localhost:5000/password-reset/${user?.email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(change),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data?.status === 200) {
+            toast.success(`${data?.message}`);
+            const empty = {
+              currentPassword: "",
+              newPassword: "",
+              confirmPassword: "",
+            };
+            setPasswordObject(empty);
+            // close the modal
+            const modal = document.getElementById("password-modal");
+            modal.checked = false;
+          }
+          if (data?.status === 401) {
+            toast.error(`${data?.message}`);
+          }
+        });
     }
   };
 
