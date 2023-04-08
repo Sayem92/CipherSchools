@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div className="h-[800px] flex justify-center items-center ">
       <div className="w-96 p-7 shadow-xl mx-2">
-        <h2 className="text-4xl py-4 text-center text-info font-bold">Login</h2>
+        <h2 className="text-4xl py-4 text-center text-info font-bold">Sign In</h2>
         <p>
           <small>Email:</small>{" "}
           <strong className="ml-2 md:ml-16"> waliur@gmail.com</strong>

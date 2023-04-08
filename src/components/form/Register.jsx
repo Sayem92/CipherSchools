@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { LoaderSpin } from "../loader/Loader";
-
+import { toast } from "react-hot-toast";
 
 const Register = () => {
   const {
@@ -11,19 +11,14 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
- 
+
   const [signUpError, setSignUpError] = useState("");
   const imageHostKey = process.env.REACT_APP_IMGBB_key;
   const [loading, setLoading] = useState(false);
 
-
-  
-
   // user sign up---------
   const handleSignUp = (data) => {
     setLoading(true);
-
-
 
     const image = data.image[0];
     const formData = new FormData();
@@ -35,20 +30,44 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((imgData) => {
-        console.log(imgData);
+        // console.log(imgData);
         if (imgData.success) {
 
-
           // save data -------------
-          setLoading(false);
-          console.log(data);
-          setSignUpError('')
+          const userData = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            image: imgData.data.display_url,
+            password: data.password,
+          };
+
+          // sava information to the database----------
+          fetch(`http://localhost:5000/register`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userData),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+              if (result?.status === 200) {
+                setLoading(false);
+                setSignUpError('')
+                toast.success(`${result?.message}`);
+                // navigate('/dashboard/myProducts');
+              }
+              else{
+                setSignUpError(`${result?.message}`);
+                setLoading(false);
+              }
+            });
         }
       });
-
   };
 
- 
   return (
     <div className="h-[800px] flex justify-center items-center ">
       <div className="w-96 p-7 shadow-xl mx-2">
