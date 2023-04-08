@@ -1,6 +1,7 @@
 import React from "react";
 import edit from "../../assets/pen-edit.svg";
 import { useState } from "react";
+import { LoaderSpin } from "../loader/Loader";
 
 const ProfileEditModal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -67,11 +68,8 @@ const ProfileEditModal = () => {
           <div className="flex  items-center gap-5">
             <div>
               {isLoading ? (
-                <div class="flex items-center justify-center ">
-                  <div
-                    style={{ borderTopColor: "transparent" }}
-                    className="w-6 h-6 border-4 border-blue-500 rounded-full animate-spin"
-                  ></div>
+                <div className="flex items-center justify-center ">
+                  <LoaderSpin className={"text-blue-700"}></LoaderSpin>
                 </div>
               ) : (
                 <img
@@ -127,6 +125,7 @@ const ProfileEditModal = () => {
                   <input
                     className="w-full py-2 rounded-md px-4 outline-none bg-slate-100"
                     type="email"
+                    readOnly
                     placeholder="Email Address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
