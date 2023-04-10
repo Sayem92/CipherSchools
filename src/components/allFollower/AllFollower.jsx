@@ -25,7 +25,7 @@ const AllFollower = () => {
   });
 
   if (isLoading) {
-    return <LoaderSpin className={"mx-96 my-32"}></LoaderSpin>;
+    return <LoaderSpin className={"w-10 mx-auto my-5 text-blue-600"} size={72}></LoaderSpin>;
   }
   return (
     <div className="mx-5">

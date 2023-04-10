@@ -5,7 +5,7 @@ const Card = ({ data }) => {
   return (
     <div>
       <div className="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
-        <img src={data?.image} alt="plant" className="h-20 w-20 mx-auto" />
+        <img src={data?.image} alt="plant" className="h-20 w-20 mx-auto mt-4" />
         <div className="p-5">
           <p className="text-medium font-bold text-gray-700">{data?.name}</p>
           <p className="text-medium  text-gray-700">{data?.college}</p>

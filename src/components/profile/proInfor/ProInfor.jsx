@@ -54,7 +54,7 @@ const ProInfor = () => {
   }, [selectedValue, selectedValue2]);
 
   return (
-    <div className="mx-12 my-12">
+    <div className="mx-2 md:mx-12 my-12">
       <p className="mb-4 border border-t-0 border-gray-300"></p>
       <div className="flex justify-between items-center mb-5">
         <h1 className="text-xl font-semibold uppercase">

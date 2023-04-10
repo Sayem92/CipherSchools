@@ -26,13 +26,13 @@ const Header = () => {
 
   return (
     <div
-      className="flex justify-between items-center px-7"
+      className="flex justify-between items-center px-7 flex-wrap"
       style={{ backgroundImage: `url(${bg})`, height: "130px" }}
     >
       <div className="flex items-center gap-5">
         <div>
           <img
-            className="rounded-full w-20 h-20"
+            className="rounded-full w-14 h-14 md:w-20 md:h-20"
             src={
               image
                 ? image

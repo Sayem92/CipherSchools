@@ -25,7 +25,7 @@ const ChipherMap = () => {
 
   return (
     <div
-      className="mx-12"
+      className="mx-2 md:mx-12"
       data-for="contributions-tooltip"
       data-event-off="mouseout"
     >

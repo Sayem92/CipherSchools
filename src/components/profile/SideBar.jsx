@@ -13,10 +13,10 @@ const SideBar = ({ selected, setSelected }) => {
             selected === 0
               ? "bg-orange-400 hover:bg-orange-400 text-white"
               : "bg-gray-100"
-          } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
+          } hover:bg-orange-100 md:py-3 md:px-4 rounded-md cursor-pointer w-10 md:w-full`}
           onClick={() => handleSelect(0)}
         >
-          <p className="flex items-center gap-3">
+          <p className="flex items-center gap-3 flex-wrap">
             <svg
               viewBox="0 0 48 48"
               xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ const SideBar = ({ selected, setSelected }) => {
                 </g>{" "}
               </g>
             </svg>
-            Dashboard
+            <span className="text-xs overflow-hidden">Dashboard</span>
           </p>
         </li>
         <li
@@ -59,10 +59,10 @@ const SideBar = ({ selected, setSelected }) => {
             selected === 1
               ? "bg-orange-400 hover:bg-orange-400 text-white"
               : "bg-gray-100"
-          } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
+          } hover:bg-orange-100 md:py-3 md:px-4 rounded-md cursor-pointer w-10 md:w-full`}
           onClick={() => handleSelect(1)}
         >
-          <p className="flex items-center gap-3">
+          <p className="flex items-center gap-3 flex-wrap">
             <svg
               viewBox="0 0 24 24"
               width="28px"
@@ -88,7 +88,7 @@ const SideBar = ({ selected, setSelected }) => {
                 </g>
               </g>
             </svg>
-            <span className=""> My Profile</span>
+            <span className="text-xs overflow-hidden"> My Profile</span>
           </p>
         </li>
         <li
@@ -96,10 +96,10 @@ const SideBar = ({ selected, setSelected }) => {
             selected === 2
               ? "bg-orange-400 hover:bg-orange-400 text-white"
               : "bg-gray-100"
-          } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
+          } hover:bg-orange-100 md:py-3 md:px-4 rounded-md cursor-pointer w-10 md:w-full`}
           onClick={() => handleSelect(2)}
         >
-          <p className="flex items-center gap-3">
+          <p className="flex items-center gap-3 flex-wrap">
             <svg
               fill={selected === 2 ? "white" : "black"}
               viewBox="0 0 24 24"
@@ -119,7 +119,7 @@ const SideBar = ({ selected, setSelected }) => {
                 ></path>
               </g>
             </svg>
-            Enrolled Course
+            <span className="text-xs"> Enrolled Course</span>
           </p>
         </li>
         <li
@@ -127,10 +127,10 @@ const SideBar = ({ selected, setSelected }) => {
             selected === 3
               ? "bg-orange-400 hover:bg-orange-400 text-white"
               : "bg-gray-100"
-          } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
+          } hover:bg-orange-100 md:py-3 md:px-4 rounded-md cursor-pointer w-10 md:w-full`}
           onClick={() => handleSelect(3)}
         >
-          <p className="flex items-center gap-3">
+          <p className="flex items-center gap-3 flex-wrap">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 64 64"
@@ -151,7 +151,7 @@ const SideBar = ({ selected, setSelected }) => {
                 ></path>{" "}
               </g>
             </svg>
-            Wishlist
+            <span className="text-xs overflow-hidden"> Wishlist</span>
           </p>
         </li>
         <li
@@ -159,10 +159,10 @@ const SideBar = ({ selected, setSelected }) => {
             selected === 4
               ? "bg-orange-400 hover:bg-orange-400 text-white"
               : "bg-gray-100"
-          } hover:bg-orange-100 py-3 px-4 rounded-md cursor-pointer`}
+          } hover:bg-orange-100 md:py-3 md:px-4 rounded-md cursor-pointer w-10 md:w-full`}
           onClick={() => handleSelect(4)}
         >
-          <p className="flex items-center gap-3">
+          <p className="flex items-center gap-3 flex-wrap">
             <svg
               viewBox="0 0 24 24"
               width="28px"
@@ -184,7 +184,7 @@ const SideBar = ({ selected, setSelected }) => {
                 ></path>
               </g>
             </svg>
-            Liked Videos
+            <span className="text-xs overflow-hidden">Liked Videos</span>
           </p>
         </li>
       </ul>

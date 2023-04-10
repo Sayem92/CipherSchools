@@ -5,7 +5,7 @@ import { useState } from "react";
 const Interests = () => {
   const [selectedButtons, setSelectedButtons] = useState([]);
   return (
-    <div className="mx-12 my-8">
+    <div className="mx-2 md:mx-12 my-8">
       <p className="mb-4 border border-t-0 border-gray-300"></p>
       <div className="flex justify-between items-center mb-5">
         <h1 className="text-xl font-semibold uppercase">INTERESTS</h1>
