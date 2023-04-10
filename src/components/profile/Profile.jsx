@@ -53,12 +53,12 @@ const Profile = () => {
           onClick={handleToggle}
           className={`bg-gray-100 text-black p-2 rounded-l-md absolute ${
             isCollapsed ? "right-10 md:right-20" : "right-0 md:right-52"
-          } top-60 transform -translate-y-1/2`}
+          } top-60 lg:top-64 transform -translate-y-1/2`}
         >
           {isCollapsed ? (
-            <img className="w-6" src={right} alt="" />
+            <img className="w-6 h-6" src={right} alt="" />
           ) : (
-            <img className="w-6" src={left} alt="" />
+            <img className="w-6 h-6" src={left} alt="" />
           )}
         </button>
       </div>

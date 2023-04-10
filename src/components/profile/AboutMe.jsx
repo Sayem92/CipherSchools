@@ -47,7 +47,7 @@ const AboutMe = () => {
   };
 
   return (
-    <div className="mx-2 md:mx-12 mt-16 md:mt-0 md:my-8">
+    <div className="mx-2 md:mx-12 mt-16 mb-8">
       <div className="flex justify-between items-center mb-5">
         <h1 className="text-xl font-semibold uppercase">About Me</h1>
         <p
