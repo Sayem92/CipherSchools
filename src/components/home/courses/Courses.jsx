@@ -42,7 +42,7 @@ const Courses = () => {
   ];
   return (
     <div className="">
-      <div className=" p-10 bg-gradient-to-r from-slate-300 to-slate-100">
+      <div className="p-2 md:p-10 bg-gradient-to-r from-slate-300 to-slate-100">
         <div className="text-center">
           <h1 className="font-bold text-3xl uppercase">
             Recommended <span className="text-purple-600">COURSES</span>
