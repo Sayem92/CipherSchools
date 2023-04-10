@@ -52,7 +52,7 @@ const Profile = () => {
         <button
           onClick={handleToggle}
           className={`bg-gray-100 text-black p-2 rounded-l-md absolute ${
-            isCollapsed ? "right-20" : "right-10 md:right-52"
+            isCollapsed ? "right-10 md:right-20" : "right-0 md:right-52"
           } top-60 transform -translate-y-1/2`}
         >
           {isCollapsed ? (
@@ -64,7 +64,7 @@ const Profile = () => {
       </div>
       <div
         className={` bg-gray-100 text-gray-900 ${
-          isCollapsed ? "w-10 md:w-24" : "md:w-56"
+          isCollapsed ? "w-16 md:w-24" : "w-0 md:w-56"
         } right-0`}
       >
         {/* side bar  */}
